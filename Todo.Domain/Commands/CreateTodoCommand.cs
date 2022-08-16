@@ -1,0 +1,36 @@
+﻿using Todo.Domain.Commands.Contracts;
+
+namespace Todo.Domain.Commands;
+
+public class CreateTodoCommand : ICommand
+{
+    #region Constructors
+
+    public CreateTodoCommand() { }
+
+    public CreateTodoCommand(string title, string user, DateTime date)
+    {
+        Title = title;
+        User = user;
+        Date = date;
+    }
+
+    #endregion
+
+    #region Properties
+
+    public string Title { get; set; }
+    public string User { get; set; }
+    public DateTime Date { get; set; }
+
+    #endregion
+
+    #region Methods
+
+    public bool Validate()
+    {
+        return true;
+    }
+
+    #endregion
+}
