@@ -4,7 +4,7 @@ public abstract class BaseEntity : IEquatable<BaseEntity>
 {
     #region Constructor
 
-    private BaseEntity()
+    protected BaseEntity()
     {
         Id = Guid.NewGuid();
     }
