@@ -1,6 +1,4 @@
-﻿using Todo.Domain.Commands.Contracts;
-
-namespace Todo.Domain.Commands.Contracts;
+﻿namespace Todo.Domain.Commands.Contracts;
 
 public class CommandResult : ICommandResult
 {
@@ -19,9 +17,9 @@ public class CommandResult : ICommandResult
 
     #region Properties
 
-    public bool Success { get; set; }
-    public string Message { get; set; }
-    public Object Data { get; set; }
+    public bool Success { get; private set; }
+    public string Message { get; private set; }
+    public Object Data { get; private set; }
 
     #endregion
 }
