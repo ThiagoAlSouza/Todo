@@ -8,6 +8,7 @@ public class CreateTodoCommand : ICommand
 
     public CreateTodoCommand() { }
 
+
     public CreateTodoCommand(string title, string user, DateTime date)
     {
         Title = title;
@@ -27,8 +28,10 @@ public class CreateTodoCommand : ICommand
 
     #region Methods
 
-    public bool Validate()
+    public bool Validate(out string validationsErrors)
     {
+        validationsErrors = string.Empty;
+
         return true;
     }
 

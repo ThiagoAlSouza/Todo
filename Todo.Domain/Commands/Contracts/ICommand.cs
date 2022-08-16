@@ -2,5 +2,5 @@
 
 public interface ICommand
 {
-    bool Validate();
+    bool Validate(out string validationsErrors);
 }
