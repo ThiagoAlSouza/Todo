@@ -1,11 +1,13 @@
-﻿namespace Todo.Domain.Commands.Contracts;
+﻿using Todo.Domain.Commands.Contracts;
+
+namespace Todo.Domain.Commands;
 
 public class CommandResult : ICommandResult
 {
     #region Constructors
 
     public CommandResult() { }
-    
+
     public CommandResult(bool success, string message, object data)
     {
         Success = success;
@@ -19,7 +21,7 @@ public class CommandResult : ICommandResult
 
     public bool Success { get; private set; }
     public string Message { get; private set; }
-    public Object Data { get; private set; }
+    public object Data { get; private set; }
 
     #endregion
 }
