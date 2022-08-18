@@ -4,10 +4,9 @@ public class TodoItem : BaseEntity
 {
     #region Constructors
 
-    public TodoItem(string title, bool done, string user, DateTime date)
+    public TodoItem(string title, string user, DateTime date)
     {
         Title = title;
-        Done = done;
         User = user;
         Date = date;
     }
