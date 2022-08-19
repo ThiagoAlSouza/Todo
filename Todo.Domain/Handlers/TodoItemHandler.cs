@@ -6,7 +6,7 @@ using Todo.Domain.Repositories;
 
 namespace Todo.Domain.Handlers;
 
-public class TodoItemHandler : IHandler<CreateTodoCommand>
+public class TodoItemHandler : IHandler<CreateTodoCommand>, IHandler<UpdateTodoCommand>, IHandler<MarkTodoAsDoneCommand>
 {
     #region Private
 
@@ -44,6 +44,7 @@ public class TodoItemHandler : IHandler<CreateTodoCommand>
             return new CommandResult(false, "Os dados de entrada estão inválidos.", errors);
 
         var todo = _todoRepository.GetById(command.Id);
+        todo.UpdateTitle(command.Title);
 
         _todoRepository.Update(todo);
 
@@ -51,4 +52,17 @@ public class TodoItemHandler : IHandler<CreateTodoCommand>
     }
 
     #endregion
+
+    public ICommandResult Handle(MarkTodoAsDoneCommand command)
+    {
+        if (!command.Validate(out errors))
+            return new CommandResult(false, "Os dados de entrada estão inválidos.", errors);
+
+        var todo = _todoRepository.GetById(command.Id);
+        todo.MarkAsDone(true);
+
+        _todoRepository.Update(todo);
+
+        return new CommandResult(true, "Sucesso ao salvar", todo);
+    }
 }
