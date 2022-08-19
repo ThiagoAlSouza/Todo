@@ -12,7 +12,6 @@ public class CreateTodoHandlerTests
     private readonly CreateTodoCommand _invalidCommand;
     private readonly CreateTodoCommand _validCommand;
     private readonly TodoItemHandler _handler;
-    private List<string> errors = new();
 
     #endregion
 

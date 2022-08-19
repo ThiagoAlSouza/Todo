@@ -14,4 +14,9 @@ public class TodoFakeRepository : ITodoRepository
     {
 
     }
+
+    public TodoItem GetById(Guid id)
+    {
+        throw new NotImplementedException();
+    }
 }

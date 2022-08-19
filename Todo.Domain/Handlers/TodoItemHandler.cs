@@ -11,6 +11,7 @@ public class TodoItemHandler : IHandler<CreateTodoCommand>
     #region Private
 
     private readonly ITodoRepository _todoRepository;
+    private List<string> errors = new();
 
     #endregion
 
@@ -27,14 +28,24 @@ public class TodoItemHandler : IHandler<CreateTodoCommand>
 
     public ICommandResult Handle(CreateTodoCommand command)
     {
-        var errors = new List<string>();
-
         if (!command.Validate(out errors))
             return new CommandResult(false, "Os dados de entrada estão inválidos.", errors);
 
         var todo = new TodoItem(command.Title, command.User, command.Date);
 
         _todoRepository.Create(todo);
+
+        return new CommandResult(true, "Sucesso ao salvar", todo);
+    }
+
+    public ICommandResult Handle(UpdateTodoCommand command)
+    {
+        if (!command.Validate(out errors))
+            return new CommandResult(false, "Os dados de entrada estão inválidos.", errors);
+
+        var todo = _todoRepository.GetById(command.Id);
+
+        _todoRepository.Update(todo);
 
         return new CommandResult(true, "Sucesso ao salvar", todo);
     }
