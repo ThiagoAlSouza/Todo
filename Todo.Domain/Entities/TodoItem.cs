@@ -8,6 +8,7 @@ public class TodoItem : BaseEntity
     {
         Title = title;
         User = user;
+        Done = false;
         Date = date;
     }
 
