@@ -1,5 +1,7 @@
 ﻿using Todo.Domain.Commands;
+using Todo.Domain.Commands.Contracts;
 using Todo.Domain.Handlers;
+using Todo.Domain.Tests.Repositories;
 
 namespace Todo.Domain.Tests.HandlerTests;
 
@@ -9,6 +11,7 @@ public class CreateTodoHandlerTests
 
     private readonly CreateTodoCommand _invalidCommand;
     private readonly CreateTodoCommand _validCommand;
+    private readonly TodoItemHandler _handler;
     private List<string> errors = new();
 
     #endregion
@@ -19,6 +22,7 @@ public class CreateTodoHandlerTests
     {
         _invalidCommand = new CreateTodoCommand("Ab", "Tiago", DateTime.Now);
         _validCommand = new CreateTodoCommand("Estudar.Net 7", "Thiago", DateTime.Now);
+        _handler = new TodoItemHandler(new TodoFakeRepository());
     }
 
     #endregion
@@ -28,13 +32,17 @@ public class CreateTodoHandlerTests
     [Fact]
     public void WhenACommandIsValid()
     {
-        Assert.True(true);
+        var result = (CommandResult)_handler.Handle(_validCommand);
+
+        Assert.True(result.Success);
     }
 
     [Fact]
     public void WhenACommandIsInvalid()
     {
-        Assert.True(true);
+        var result = (CommandResult)_handler.Handle(_invalidCommand);
+
+        Assert.True(!result.Success);
     }
 
     #endregion
