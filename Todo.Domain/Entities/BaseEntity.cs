@@ -13,7 +13,7 @@ public abstract class BaseEntity : IEquatable<BaseEntity>
 
     #region Properties
 
-    private Guid Id { get; }
+    public Guid Id { get; }
 
     #endregion
 
