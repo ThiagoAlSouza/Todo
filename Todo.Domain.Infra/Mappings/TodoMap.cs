@@ -25,6 +25,7 @@ public class TodoMap : IEntityTypeConfiguration<TodoItem>
             .HasColumnName("DONE");
 
         builder.Property(x => x.User)
+            .IsRequired()
             .HasColumnType("varchar(70)")
             .HasColumnName("USER");
 
