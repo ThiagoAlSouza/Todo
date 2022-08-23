@@ -75,7 +75,22 @@ public class TodoRepository : ITodoRepository
         }
     }
 
-    public IEnumerable<TodoItem> GetAll(string user)
+    public IEnumerable<TodoItem> GetAll()
+    {
+        try
+        {
+            var todos = _context.Todos.AsNoTracking().ToList();
+
+            return todos;
+
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    public IEnumerable<TodoItem> GetAllByUser(string user)
     {
         try
         {
@@ -89,7 +104,7 @@ public class TodoRepository : ITodoRepository
         {
             throw new Exception(e.Message);
         }
-    }
+    } 
 
     public IEnumerable<TodoItem> GetAllUndone(string user)
     {

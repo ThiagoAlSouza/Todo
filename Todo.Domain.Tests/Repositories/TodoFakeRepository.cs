@@ -22,7 +22,12 @@ public class TodoFakeRepository : ITodoRepository
         throw new NotImplementedException();
     }
 
-    public IEnumerable<TodoItem> GetAll(string user)
+    public IEnumerable<TodoItem> GetAll()
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<TodoItem> GetAllByUser(string user)
     {
         throw new NotImplementedException();
     }
