@@ -86,5 +86,20 @@ public class TodoController : ControllerBase
         }
     }
 
+    [HttpPut]
+    public IActionResult Update([FromBody] UpdateTodoCommand todo,
+        [FromServices]TodoItemHandler handler)
+    {
+        try
+        {
+            handler.Handle(todo);
+            return Ok(new CommandResult(true, "Registro atualizado com sucesso.", todo));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(new CommandResult(false, e.Message, todo));
+        }
+    }
+
     #endregion
 }
