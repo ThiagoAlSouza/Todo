@@ -5,6 +5,8 @@ namespace Todo.Domain.Tests.Repositories;
 
 public class TodoFakeRepository : ITodoRepository
 {
+    #region Methods
+
     public void Create(TodoItem todo)
     {
 
@@ -19,4 +21,26 @@ public class TodoFakeRepository : ITodoRepository
     {
         throw new NotImplementedException();
     }
+
+    public IEnumerable<TodoItem> GetAll(string user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<TodoItem> GetAllUndone(string user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<TodoItem> GetAllDone(string user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<TodoItem> GetByPeriod(string user, DateTime date, bool done)
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
 }
