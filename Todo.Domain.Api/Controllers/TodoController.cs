@@ -101,5 +101,41 @@ public class TodoController : ControllerBase
         }
     }
 
+    [Route("mark-as-done")]
+    [HttpPut]
+    public IActionResult MarkAsDone(
+        [FromBody] MarkTodoAsDoneCommand todo,
+        [FromServices] TodoItemHandler handler
+    )
+    {
+        try
+        {
+            handler.Handle(todo);
+            return Ok(new CommandResult(true, "Ação realizada com sucesso.", todo));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(new CommandResult(false, e.Message, todo));
+        }
+    }
+
+    [Route("mark-as-undone")]
+    [HttpPut]
+    public IActionResult MarkAsUndone(
+        [FromBody] MarkTodoAsUndoneCommand todo,
+        [FromServices] TodoItemHandler handler
+    )
+    {
+        try
+        {
+            handler.Handle(todo);
+            return Ok(new CommandResult(true, "Ação realizada com sucesso.", todo));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(new CommandResult(false, e.Message, todo));
+        }
+    }
+
     #endregion
 }
