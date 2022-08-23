@@ -8,7 +8,7 @@ public class CommandResult : ICommandResult
 
     public CommandResult() { }
 
-    public CommandResult(bool success, string message, object data)
+    public CommandResult(bool success, string message, object? data)
     {
         Success = success;
         Message = message;
@@ -21,7 +21,7 @@ public class CommandResult : ICommandResult
 
     public bool Success { get; private set; }
     public string Message { get; private set; }
-    public object Data { get; private set; }
+    public object? Data { get; private set; }
 
     #endregion
 }
