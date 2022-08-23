@@ -145,7 +145,7 @@ public class TodoRepository : ITodoRepository
             var todosDone = _context.Todos.AsNoTracking()
                 .Where(x => x.User == user &&
                             x.Done == done &&
-                            x.Date == date);
+                            x.Date.Date == date.Date);
 
             return todosDone;
 

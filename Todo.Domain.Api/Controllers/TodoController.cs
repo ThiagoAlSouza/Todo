@@ -102,10 +102,8 @@ public class TodoController : ControllerBase
     }
 
     [HttpPut("mark-as-done")]
-    public IActionResult MarkAsDone(
-        [FromBody] MarkTodoAsDoneCommand todo,
-        [FromServices] TodoItemHandler handler
-    )
+    public IActionResult MarkAsDone([FromBody] MarkTodoAsDoneCommand todo,
+        [FromServices] TodoItemHandler handler)
     {
         try
         {
@@ -119,10 +117,8 @@ public class TodoController : ControllerBase
     }
 
     [HttpPut("mark-as-undone")]
-    public IActionResult MarkAsUndone(
-        [FromBody] MarkTodoAsUndoneCommand todo,
-        [FromServices] TodoItemHandler handler
-    )
+    public IActionResult MarkAsUndone([FromBody] MarkTodoAsUndoneCommand todo,
+        [FromServices] TodoItemHandler handler)
     {
         try
         {
@@ -135,13 +131,13 @@ public class TodoController : ControllerBase
         }
     }
 
-    [HttpGet("get-by-period/{user,date}")]
+    [HttpGet("get-by-period/{user},{date:datetime}")]
     public IActionResult GetByPeriod([FromRoute]string user,
-        [FromRoute]DateTime date)
+        [FromRoute] DateTime date)
     {
         try
         {
-            var todos = _todoRepository.GetByPeriod(user, date, true);
+            var todos = _todoRepository.GetByPeriod(user, date, false);
 
             return Ok(new CommandResult(true, string.Empty, todos));
         }
