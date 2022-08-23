@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Todo.Domain.Commands;
 using Todo.Domain.Handlers;
-using Todo.Domain.Infra.Data;
 using Todo.Domain.Repositories;
 
 namespace Todo.Domain.Api.Controllers;
@@ -49,12 +48,11 @@ public class TodoController : ControllerBase
         {
             var todos = _todoRepository.GetAll();
 
-            return Ok(new CommandResult(true, "Registro salvo com sucesso.", todos));
+            return Ok(new CommandResult(true, string.Empty, todos));
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            return BadRequest(new CommandResult(false, e.Message, null));
         }
     }
 
