@@ -56,7 +56,7 @@ public class TodoController : ControllerBase
         }
     }
 
-    [HttpGet("dones/{user}")]
+    [HttpGet("get-all-undone/{user}")]
     public IActionResult GetAllDone([FromRoute] string user)
     {
         try
@@ -71,7 +71,7 @@ public class TodoController : ControllerBase
         }
     }
 
-    [HttpGet("dones/{user}")]
+    [HttpGet("get-all-done/{user}")]
     public IActionResult GetAllUnDone([FromRoute] string user)
     {
         try
@@ -86,9 +86,9 @@ public class TodoController : ControllerBase
         }
     }
 
-    [HttpPut]
+    [HttpPut("todos")]
     public IActionResult Update([FromBody] UpdateTodoCommand todo,
-        [FromServices]TodoItemHandler handler)
+        [FromServices] TodoItemHandler handler)
     {
         try
         {
@@ -101,8 +101,7 @@ public class TodoController : ControllerBase
         }
     }
 
-    [Route("mark-as-done")]
-    [HttpPut]
+    [HttpPut("mark-as-done")]
     public IActionResult MarkAsDone(
         [FromBody] MarkTodoAsDoneCommand todo,
         [FromServices] TodoItemHandler handler
@@ -119,8 +118,7 @@ public class TodoController : ControllerBase
         }
     }
 
-    [Route("mark-as-undone")]
-    [HttpPut]
+    [HttpPut("mark-as-undone")]
     public IActionResult MarkAsUndone(
         [FromBody] MarkTodoAsUndoneCommand todo,
         [FromServices] TodoItemHandler handler
@@ -134,6 +132,22 @@ public class TodoController : ControllerBase
         catch (Exception e)
         {
             return BadRequest(new CommandResult(false, e.Message, todo));
+        }
+    }
+
+    [HttpGet("get-by-period/{user,date}")]
+    public IActionResult GetByPeriod([FromRoute]string user,
+        [FromRoute]DateTime date)
+    {
+        try
+        {
+            var todos = _todoRepository.GetByPeriod(user, date, true);
+
+            return Ok(new CommandResult(true, string.Empty, todos));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(new CommandResult(false, e.Message, null));
         }
     }
 
