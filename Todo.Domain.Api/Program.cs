@@ -37,7 +37,7 @@ void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    builder.Services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TodoDataBase"));
+    builder.Services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TodoDatabase"));
     builder.Services.AddTransient<ITodoRepository, TodoRepository>();
     builder.Services.AddTransient<TodoItemHandler, TodoItemHandler>();
 }
