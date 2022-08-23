@@ -71,5 +71,20 @@ public class TodoController : ControllerBase
         }
     }
 
+    [HttpGet("dones/{user}")]
+    public IActionResult GetAllUnDone([FromRoute] string user)
+    {
+        try
+        {
+            var todos = _todoRepository.GetAllUndone(user);
+
+            return Ok(new CommandResult(true, string.Empty, todos));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(new CommandResult(false, e.Message, null));
+        }
+    }
+
     #endregion
 }
