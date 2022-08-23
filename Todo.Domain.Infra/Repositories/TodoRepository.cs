@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.EntityFrameworkCore;
 using Todo.Domain.Entities;
 using Todo.Domain.Infra.Data;
+using Todo.Domain.Queries;
 using Todo.Domain.Repositories;
 
 namespace Todo.Domain.Infra.Repositories;
@@ -58,27 +60,86 @@ public class TodoRepository : ITodoRepository
 
     public TodoItem GetById(Guid id)
     {
-        throw new NotImplementedException();
+        try
+        {
+           var todo = _context.Todos.FirstOrDefault(x => x.Id == id);
+
+           if (todo == null)
+               throw new Exception("Registro não encontrado.");
+
+           return todo;
+
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
     }
 
     public IEnumerable<TodoItem> GetAll(string user)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var todos = _context.Todos.AsNoTracking()
+                .Where(TodoQueries.GetAll(user));
+
+            return todos;
+
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
     }
 
     public IEnumerable<TodoItem> GetAllUndone(string user)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var todosUndone = _context.Todos.AsNoTracking()
+                .Where(TodoQueries.GetAllUnDone(user));
+
+            return todosUndone;
+
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
     }
 
     public IEnumerable<TodoItem> GetAllDone(string user)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var todosDone = _context.Todos.AsNoTracking()
+                .Where(TodoQueries.GetAllDone(user));
+
+            return todosDone;   
+
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
     }
 
     public IEnumerable<TodoItem> GetByPeriod(string user, DateTime date, bool done)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var todosDone = _context.Todos.AsNoTracking()
+                .Where(x => x.User == user &&
+                            x.Done == done &&
+                            x.Date == date);
+
+            return todosDone;
+
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
     }
 
     #endregion
