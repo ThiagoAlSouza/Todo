@@ -32,7 +32,6 @@ app.MapControllers();
 
 app.Run();
 
-
 void ConfigureServices(WebApplicationBuilder builder)
 {
     builder.Services.AddControllers();
