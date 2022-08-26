@@ -32,8 +32,8 @@ public class TodoController : ControllerBase
     {
         try
         {
-            handler.Handle(todo);
-            return Ok(new CommandResult(true, "Registro salvo com sucesso.", todo));
+            var result = handler.Handle(todo);
+            return Ok(result);
         }
         catch (Exception e)
         {
