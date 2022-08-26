@@ -35,7 +35,7 @@ public class TodoItemHandler : IHandler<CreateTodoCommand>, IHandler<UpdateTodoC
 
         _todoRepository.Create(todo);
 
-        return new CommandResult(true, "Sucesso ao salvar", todo);
+        return new CommandResult(true, "Registro salvo com sucesso", todo);
     }
 
     public ICommandResult Handle(UpdateTodoCommand command)
@@ -48,10 +48,8 @@ public class TodoItemHandler : IHandler<CreateTodoCommand>, IHandler<UpdateTodoC
 
         _todoRepository.Update(todo);
 
-        return new CommandResult(true, "Sucesso ao salvar", todo);
+        return new CommandResult(true, "Registro salvo com sucesso", todo);
     }
-
-    #endregion
 
     public ICommandResult Handle(MarkTodoAsDoneCommand command)
     {
@@ -63,7 +61,7 @@ public class TodoItemHandler : IHandler<CreateTodoCommand>, IHandler<UpdateTodoC
 
         _todoRepository.Update(todo);
 
-        return new CommandResult(true, "Sucesso ao salvar", todo);
+        return new CommandResult(true, "Registro salvo com sucesso", todo);
     }
 
     public ICommandResult Handle(MarkTodoAsUndoneCommand command)
@@ -76,6 +74,8 @@ public class TodoItemHandler : IHandler<CreateTodoCommand>, IHandler<UpdateTodoC
 
         _todoRepository.Update(todo);
 
-        return new CommandResult(true, "Sucesso ao salvar", todo);
+        return new CommandResult(true, "Registro salvo com sucesso", todo);
     }
+
+    #endregion
 }

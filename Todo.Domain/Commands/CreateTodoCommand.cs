@@ -34,13 +34,13 @@ public class CreateTodoCommand : ICommand
 
         if (Title.Length < 3)
         {
-            validationsErrors.Add("O tamanho título deve ser maior que 3 carácter");
+            validationsErrors.Add("O tamanho do título deve ser maior que 3 carácter");
             valid = false;
         }
             
         if(User.Length < 6)
         {
-            validationsErrors.Add("O tamanho usuário deve ser maior que 6 carácter");
+            validationsErrors.Add("O tamanho do usuário deve ser maior que 6 carácter");
             valid = false;
         }
 
