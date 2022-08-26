@@ -4,11 +4,15 @@ namespace Todo.Domain.Api.Controllers;
 
 [ApiController]
 [Route("v1")]
-public class HealthController : ControllerBase
+public class StatusApiController : ControllerBase
 {
-    [HttpGet("health")]
+    #region Methods
+
+    [HttpGet("status-api")]
     public IActionResult Get()
     {
         return Ok();
     }
+
+    #endregion
 }
