@@ -14,7 +14,7 @@ public class TodoMap : IEntityTypeConfiguration<TodoItem>
         
         builder.Property(x => x.Title)
             .IsRequired()
-            .HasColumnType("varchar(70)")
+            .HasColumnType("varchar(80)")
             .HasColumnName("TITLE");
 
         builder.Property(x => x.Date)
@@ -26,7 +26,7 @@ public class TodoMap : IEntityTypeConfiguration<TodoItem>
 
         builder.Property(x => x.User)
             .IsRequired()
-            .HasColumnType("varchar(70)")
+            .HasColumnType("varchar(80)")
             .HasColumnName("USER");
 
         builder.HasIndex(x => x.User);
